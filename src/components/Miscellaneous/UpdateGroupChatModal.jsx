@@ -80,7 +80,7 @@ export default function UpdateGroupChatModal({
         `https://neochat-backend.onrender.com/api/user?search=${search}`,
         config
       );
-      console.log(data);
+      // console.log(data);
       setLoading(false);
       setSearchResult(data);
     } catch (error) {

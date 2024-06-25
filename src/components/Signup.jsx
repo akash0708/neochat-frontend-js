@@ -55,7 +55,7 @@ const Signup = () => {
         .then((res) => res.json())
         .then((data) => {
           setPic(data.url.toString());
-          console.log(data.url.toString());
+          // console.log(data.url.toString());
           setLoading(false);
         })
         .catch((err) => {
@@ -71,8 +71,8 @@ const Signup = () => {
     }
   };
   const submitHandler = async () => {
-    console.log("inside submit handler");
-    console.log(name, email, password, confirmPassword, pic);
+    // console.log("inside submit handler");
+    // console.log(name, email, password, confirmPassword, pic);
 
     setLoading(true);
     if (!name || !email || !password || !confirmPassword) {
@@ -84,7 +84,7 @@ const Signup = () => {
       setLoading(false);
       return;
     }
-    console.log("checking password");
+    // console.log("checking password");
 
     if (password !== confirmPassword) {
       toast({
@@ -95,7 +95,7 @@ const Signup = () => {
       setLoading(false);
       return;
     }
-    console.log("passwords match");
+    // console.log("passwords match");
 
     try {
       const config = {
@@ -113,7 +113,7 @@ const Signup = () => {
         variant: "default",
         duration: 5000,
       });
-      console.log("data sent");
+      // console.log("data sent");
 
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
