@@ -215,21 +215,22 @@ export default function UpdateGroupChatModal({
                 onChange={(e) => handleSearch(e.target.value)}
                 className="col-span-3"
               />
-              {loading ? (
-                <p>Loading...</p>
-              ) : (
-                <div className="flex flex-col gap-2 w-full h-48 overflow-y-scroll">
-                  {searchResult?.slice(0, 4).map((user) => (
-                    <UserListItem
-                      key={user._id}
-                      user={user}
-                      handleFunction={() => handleAddUser(user)}
-                    />
-                  ))}
-                </div>
-              )}
             </div>
           </div>
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <div className="flex flex-col gap-2 w-full h-48 overflow-y-scroll">
+              {searchResult?.slice(0, 4).map((user) => (
+                <UserListItem
+                  key={user._id}
+                  user={user}
+                  handleFunction={() => handleAddUser(user)}
+                />
+              ))}
+            </div>
+          )}
+
           <div className="w-full flex flex-wrap border-0 outline-none gap-2">
             {selectedChat.users.map((u) => (
               <UserBadgeItem
