@@ -161,15 +161,15 @@ export const GroupChatModal = ({ children }) => {
             // <ChatLoading />
             <div>Loading...</div>
           ) : (
-            searchResult
-              ?.slice(0, 4)
-              .map((user) => (
+            <div className="w-full h-56 overflow-y-scroll">
+              {searchResult?.slice(0, 4).map((user) => (
                 <UserListItem
                   key={user._id}
                   user={user}
                   handleFunction={() => handleGroup(user)}
                 />
-              ))
+              ))}
+            </div>
           )}
           <DialogFooter>
             <Button onClick={handleSubmit}>Create Chat</Button>
