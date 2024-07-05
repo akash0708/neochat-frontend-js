@@ -161,7 +161,7 @@ export const GroupChatModal = ({ children }) => {
             // <ChatLoading />
             <div>Loading...</div>
           ) : (
-            <div className="w-full h-56 overflow-y-scroll">
+            <div className="flex flex-col gap-2 w-full h-48 overflow-y-scroll">
               {searchResult?.slice(0, 4).map((user) => (
                 <UserListItem
                   key={user._id}
