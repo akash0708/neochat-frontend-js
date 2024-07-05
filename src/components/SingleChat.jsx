@@ -127,6 +127,38 @@ export default function SingleChat({ fetchAgain, setFetchAgain }) {
       }
     }
   };
+  const sendMessageOnClick = async () => {
+    if (newMessage) {
+      socket.emit("stop typing", selectedChat._id);
+      try {
+        const config = {
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        };
+        setNewMessage("");
+        const { data } = await axios.post(
+          `https://neochat-backend.onrender.com/api/message`,
+          {
+            content: newMessage,
+            chatId: selectedChat,
+          },
+          config
+        );
+        // console.log(data);
+
+        socket.emit("new message", data);
+        setMessages([...messages, data]);
+      } catch (error) {
+        toast({
+          variant: "destructive",
+          title: error.response.data.message,
+          duration: 2000,
+        });
+      }
+    }
+  };
 
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
@@ -205,7 +237,7 @@ export default function SingleChat({ fetchAgain, setFetchAgain }) {
                   onChange={typingHandler}
                   value={newMessage}
                 />
-                <Button onClick={sendMessage}>
+                <Button onClick={sendMessageOnClick}>
                   <SendHorizonalIcon size={16} />
                 </Button>
               </div>
