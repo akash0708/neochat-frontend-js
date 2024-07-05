@@ -196,7 +196,7 @@ const SideDrawer = () => {
       </Menubar>
 
       <Drawer open={open} onOpenChange={setOpen} direction="left">
-        <DrawerContent className="h-screen w-[30%] px-2">
+        <DrawerContent className="h-screen w-[80%] sm:w-[30%] px-2">
           <DrawerHeader className="flex flex-col gap-4 ">
             <DrawerTitle>Search Users</DrawerTitle>
             <DrawerDescription className="flex flex-row gap-1">

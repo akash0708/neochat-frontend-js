@@ -18,7 +18,7 @@ const loadingElements = [
 
 const ChatLoading = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       {loadingElements.map((element) => (
         <div
           key={element.id}

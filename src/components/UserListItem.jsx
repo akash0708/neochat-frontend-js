@@ -10,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const UserListItem = ({ user, handleFunction }) => {
   return (
     <Card
-      className="flex items-center px-4 hover:bg-slate-100"
+      className="flex w-full items-center px-4 hover:bg-slate-100"
       onClick={handleFunction}
     >
       <Avatar>
