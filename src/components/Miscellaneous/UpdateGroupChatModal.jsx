@@ -218,7 +218,7 @@ export default function UpdateGroupChatModal({
               {loading ? (
                 <p>Loading...</p>
               ) : (
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-2 w-full h-48 overflow-y-scroll">
                   {searchResult?.slice(0, 4).map((user) => (
                     <UserListItem
                       key={user._id}
@@ -239,7 +239,7 @@ export default function UpdateGroupChatModal({
               />
             ))}
           </div>
-          <DialogFooter>
+          <DialogFooter className="w-full flex flex-col gap-2">
             <Button disabled={renameLoading} onClick={handleRename}>
               Save changes
             </Button>
