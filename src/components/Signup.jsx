@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -22,15 +23,13 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [pic, setPic] = useState();
   const [loading, setLoading] = useState(false);
 
   const { toast } = useToast();
-
-  // const handleClick = () => {
-  //   setShow(!show);
-  // };
   const postDetails = (pics) => {
     if (pics === undefined) {
       toast({
@@ -154,34 +153,53 @@ const Signup = () => {
             }}
           />
         </div>
-        <div className="space-y-1">
+        <div className="relative space-y-1">
           <Label htmlFor="password">Password</Label>
           <Input
             id="password"
             placeholder="Enter your password"
-            type="text"
-            // suffix={
-            //   show ? (
-            //     <EyeIcon onClick={() => setShow(false)} />
-            //   ) : (
-            //     <EyeOffIcon onClick={() => setShow(true)} />
-            //   )
-            // }
+            type={showPassword ? "text" : "password"}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
+          {!showPassword ? (
+            <Eye
+              size={24}
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-8 right-4"
+            />
+          ) : (
+            <EyeOff
+              size={24}
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-8 right-4"
+            />
+          )}
         </div>
-        <div className="space-y-1">
+        <div className="relative space-y-1">
           <Label htmlFor="confirmPassword">Confirm Password</Label>
           <Input
             id="confirmPassword"
             placeholder="Renter your password"
-            type="text"
+            type={showConfirmPassword ? "text" : "password"}
             onChange={(e) => {
               setConfirmPassword(e.target.value);
             }}
           />
+          {!showConfirmPassword ? (
+            <Eye
+              size={24}
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute top-8 right-4"
+            />
+          ) : (
+            <EyeOff
+              size={24}
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute top-8 right-4"
+            />
+          )}
         </div>
         <div className="space-y-1">
           <Label htmlFor="profilePic">Upload profile pic</Label>

@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
   const { toast } = useToast();
@@ -19,6 +20,7 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const submitHandler = async () => {
@@ -80,28 +82,35 @@ const Login = () => {
             }}
           />
         </div>
-        <div className="space-y-1">
+        <div className="relative space-y-1">
           <Label htmlFor="password">Password</Label>
           <Input
             id="password"
             placeholder="Enter your password"
-            type="text"
-            // suffix={
-            //   show ? (
-            //     <EyeIcon onClick={() => setShow(false)} />
-            //   ) : (
-            //     <EyeOffIcon onClick={() => setShow(true)} />
-            //   )
-            // }
+            type={showPassword ? "text" : "password"}
+            className="pr-12"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
+          {!showPassword ? (
+            <Eye
+              size={24}
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-8 right-4"
+            />
+          ) : (
+            <EyeOff
+              size={24}
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-8 right-4"
+            />
+          )}
         </div>
       </CardContent>
       <CardFooter>
         <Button onClick={submitHandler} disabled={loading}>
-          Sign up
+          Login
         </Button>
       </CardFooter>
     </Card>
